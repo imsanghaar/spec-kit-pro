@@ -439,6 +439,9 @@ app = typer.Typer(
     add_completion=False,
     invoke_without_command=True,
     cls=BannerGroup,
+    no_args_is_help=True,
+    epilog="Use 'spp' as a shorter alias for 'specifypro'.",
+    context_settings={"help_option_names": ["-h", "--help"]},
 )
 
 def show_banner():
@@ -455,9 +458,21 @@ def show_banner():
     console.print(Align.center(Text(TAGLINE, style="italic bright_yellow")))
     console.print()
 
-@app.callback()
-def callback(ctx: typer.Context):
-    """Show banner when no subcommand is provided."""
+@app.callback(invoke_without_command=True)
+def callback(ctx: typer.Context,
+             version: bool = typer.Option(None, "--version", "-v", is_flag=True, help="Show version and exit")):
+    """Show version or banner when no subcommand is provided."""
+    if version:
+        import importlib.metadata
+        try:
+            cli_version = importlib.metadata.version("specifypro")
+        except Exception:
+            cli_version = "unknown"
+
+        console.print(f"SpecifyPro CLI Version: {cli_version}")
+        console.print(f"Release Date: 25-12-2025")
+        raise typer.Exit()
+
     if ctx.invoked_subcommand is None and "--help" not in sys.argv and "-h" not in sys.argv:
         show_banner()
         console.print(Align.center("[dim]Run 'specifypro --help' for usage information[/dim]"))
@@ -1219,11 +1234,11 @@ def init(
 
     steps_lines.append(f"{step_num}. Start using slash commands with your AI agent:")
 
-    steps_lines.append("   2.1 [cyan]/speckit.constitution[/] - Establish project principles")
-    steps_lines.append("   2.2 [cyan]/speckit.specify[/] - Create baseline specification")
-    steps_lines.append("   2.3 [cyan]/speckit.plan[/] - Create implementation plan")
-    steps_lines.append("   2.4 [cyan]/speckit.tasks[/] - Generate actionable tasks")
-    steps_lines.append("   2.5 [cyan]/speckit.implement[/] - Execute implementation")
+    steps_lines.append("   2.1 [cyan]/spp.constitution[/] - Establish project principles")
+    steps_lines.append("   2.2 [cyan]/spp.specify[/] - Create baseline specification")
+    steps_lines.append("   2.3 [cyan]/spp.plan[/] - Create implementation plan")
+    steps_lines.append("   2.4 [cyan]/spp.tasks[/] - Generate actionable task lists")
+    steps_lines.append("   2.5 [cyan]/spp.implement[/] - Execute implementation")
 
     steps_panel = Panel("\n".join(steps_lines), title="Next Steps", border_style="cyan", padding=(1,2))
     console.print()
@@ -1232,9 +1247,9 @@ def init(
     enhancement_lines = [
         "Optional commands that you can use for your specs [bright_black](improve quality & confidence)[/bright_black]",
         "",
-        f"○ [cyan]/speckit.clarify[/] [bright_black](optional)[/bright_black] - Ask structured questions to de-risk ambiguous areas before planning (run before [cyan]/speckit.plan[/] if used)",
-        f"○ [cyan]/speckit.analyze[/] [bright_black](optional)[/bright_black] - Cross-artifact consistency & alignment report (after [cyan]/speckit.tasks[/], before [cyan]/speckit.implement[/])",
-        f"○ [cyan]/speckit.checklist[/] [bright_black](optional)[/bright_black] - Generate quality checklists to validate requirements completeness, clarity, and consistency (after [cyan]/speckit.plan[/])"
+        f"○ [cyan]/spp.clarify[/] [bright_black](optional)[/bright_black] - Ask structured questions to de-risk ambiguous areas before planning (run before [cyan]/spp.plan[/] if used)",
+        f"○ [cyan]/spp.analyze[/] [bright_black](optional)[/bright_black] - Cross-artifact consistency & alignment report (after [cyan]/spp.tasks[/], before [cyan]/spp.implement[/])",
+        f"○ [cyan]/spp.checklist[/] [bright_black](optional)[/bright_black] - Generate quality checklists to validate requirements completeness, clarity, and consistency (after [cyan]/spp.plan[/])"
     ]
     enhancements_panel = Panel("\n".join(enhancement_lines), title="Enhancement Commands", border_style="cyan", padding=(1,2))
     console.print()
@@ -1287,9 +1302,9 @@ def version():
     """Display version and system information."""
     import platform
     import importlib.metadata
-    
+
     show_banner()
-    
+
     # Get CLI version from package metadata
     cli_version = "unknown"
     try:
@@ -1305,15 +1320,15 @@ def version():
                     cli_version = data.get("project", {}).get("version", "unknown")
         except Exception:
             pass
-    
+
     # Fetch latest template release version
     repo_owner = "github"
     repo_name = "spec-kit"
     api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/releases/latest"
-    
+
     template_version = "unknown"
     release_date = "unknown"
-    
+
     try:
         response = client.get(
             api_url,

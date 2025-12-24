@@ -1,12 +1,12 @@
 ---
 description: Generate an actionable, dependency-ordered tasks.md for the feature based on available design artifacts.
-handoffs: 
+handoffs:
   - label: Analyze For Consistency
-    agent: speckit.analyze
+    agent: spp.analyze
     prompt: Run a project analysis for consistency
     send: true
   - label: Implement Project
-    agent: speckit.implement
+    agent: spp.implement
     prompt: Start the implementation in phases
     send: true
 scripts:
