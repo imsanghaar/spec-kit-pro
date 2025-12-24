@@ -1,6 +1,6 @@
 [project]
-name = "specifypro"
-version = "0.0.22"
+name = "SpeckitPro"
+version = "0.0.23"
 description = "SpecifyPro CLI, part of Imam Sanghaar's Speckit Pro. A tool to bootstrap your projects for Spec-Driven Development (SDD)."
 requires-python = ">=3.11"
 dependencies = [
