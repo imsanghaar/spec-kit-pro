@@ -1,6 +1,6 @@
 > **SpecifyPro**: It enables Spec-driven Vibe-coding by combining the rapid, conversational generation power of "vibe coding" with the structure and architectural coherence provided by the "spec-driven" methodology. This is a enhanced Spec-Driven Development toolkit with patterns & templates for building scalable multi-agent AI systems. It is a practical fork of github/spec-kit for spec-driven development of agentic AI systems. It provides patterns, templates, and reference projects for building scalable, distributed multi-agent apps with the OpenAI Agents SDK, MCP, A2A, and a cloud-native runtime stack—Docker, Kubernetes, Dapr (Actors & Workflows), and Ray. Use it to define specs, spin up services, orchestrate agents, and ship production-ready stacks faster with guardrails and CI-friendly scaffolds.
 
-**The Most Important Question for Today's Developer**
+## The Most Important Question for Today's Developer
 
 There's a question that every software developer should be asking themselves, one that will fundamentally shape the future of our profession: **If AI writes the code, what's left for a developer to do?**
 
@@ -241,11 +241,11 @@ The `specify` command supports the following options:
 
 ### Commands
 
-| Command   | Description                                                                                                                                             |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `init`    | Initialize a new SpecifyPro project from the latest template                                                                                               |
-| `check`   | Check for installed tools (`git`, `claude`, `gemini`, `code`/`code-insiders`, `cursor-agent`, `windsurf`, `qwen`, `opencode`, `codex`, `shai`, `qoder`) |
-| `version` | Display version and system information                                                                                                                  |
+|Command|Description|
+|---|---|
+|`init`|Initialize a new SpecifyPro project from the latest template|
+|`check`|Check for installed tools (`git`, `claude`, `gemini`, `code`/`code-insiders`, `cursor-agent`, `windsurf`, `qwen`, `opencode`, `codex`, `shai`, `qoder`)|
+|`version`|Display version and system information|
 
 ### `specifypro init` Arguments & Options
 
@@ -358,11 +358,11 @@ Spec-Driven Development is a structured process that emphasizes:
 
 ## 🌟 Development Phases
 
-| Phase                                    | Focus                    | Key Activities                                                                                                                                                     |
-| ---------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **0-to-1 Development** ("Greenfield")    | Generate from scratch    | <ul><li>Start with high-level requirements</li><li>Generate specifications</li><li>Plan implementation steps</li><li>Build production-ready applications</li></ul> |
-| **Creative Exploration**                 | Parallel implementations | <ul><li>Explore diverse solutions</li><li>Support multiple technology stacks & architectures</li><li>Experiment with UX patterns</li></ul>                         |
-| **Iterative Enhancement** ("Brownfield") | Brownfield modernization | <ul><li>Add features iteratively</li><li>Modernize legacy systems</li><li>Adapt processes</li></ul>                                                                |
+|Phase|Focus|Key Activities|
+|---|---|---|
+|**0-to-1 Development** ("Greenfield")|Generate from scratch|<ul><li>Start with high-level requirements</li><li>Generate specifications</li><li>Plan implementation steps</li><li>Build production-ready applications</li></ul>|
+|**Creative Exploration**|Parallel implementations|<ul><li>Explore diverse solutions</li><li>Support multiple technology stacks & architectures</li><li>Experiment with UX patterns</li></ul>|
+|**Iterative Enhancement** ("Brownfield")|Brownfield modernization|<ul><li>Add features iteratively</li><li>Modernize legacy systems</li><li>Adapt processes</li></ul>|
 
 ## 🎯 Experimental Goals
 
@@ -673,6 +673,7 @@ Once ready, use the `/sp.implement` command to execute your implementation plan:
 ```
 
 The `/sp.implement` command will:
+
 - **Task breakdown organized by user story** - Each user story becomes a separate implementation phase with its own set of tasks
 - **Dependency management** - Tasks are ordered to respect dependencies between components (e.g., models before services, services before endpoints)
 - **Parallel execution markers** - Tasks that can run in parallel are marked with `[P]` to optimize development workflow
@@ -691,6 +692,7 @@ Once ready, use the `/sp.implement` command to execute your implementation plan:
 ```
 
 The `/sp.implement` command will:
+
 - Validate that all prerequisites are in place (constitution, spec, plan, and tasks)
 - Parse the task breakdown from `tasks.md`
 - Execute tasks in the correct order, respecting dependencies and parallel execution markers
@@ -751,7 +753,7 @@ git clone https://github.com/panaversity/spec-kit-pro.git
 ### Contribution Resources
 
 - **🔧 [Contributing Guide](CONTRIBUTING.md)** - Setup, testing, and submission process
-- **⚡ [Quick Reference](#quick-reference)** - Common command patterns and examples
+- **⚡ [Quick Contribution Guide](#quick-contribution-guide)** - Common command patterns and examples
 
 ### Popular Contribution Areas
 
