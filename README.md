@@ -201,9 +201,11 @@ For detailed step-by-step instructions, see our [comprehensive guide](./spec-dri
 
 ## 📽️ Video Overview
 
-Want to see SpeckitPro in action? Watch our [video overview](./SpeckitPro__The_Blueprint.mp4)!
+Want to see SpeckitPro in action? Check out our video overview in the repository!
 
 [SpeckitPro__The_Blueprint.mp4](./SpeckitPro__The_Blueprint.mp4)
+
+*Note: Download the video file to view it locally as GitHub does not embed MP4 files directly in README files.*
 
 ## 🤖 Supported AI Agents
 
