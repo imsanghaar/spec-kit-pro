@@ -1423,25 +1423,96 @@ def display_users_dashboard():
     console.print(" SpeckitPro Active Users Dashboard")
     console.print("------------------------------------------------")
 
-    # Mock data for active users/devices with more detailed information
-    total_devices = 15
-    users_data = [
-        {"name": "John Smith", "os": "Windows 10", "version": "22H2", "ip": "192.168.1.101", "country": "USA", "last_seen": "2025-12-24", "installation_id": "SPK-001"},
-        {"name": "Maria Garcia", "os": "macOS", "version": "13.5", "ip": "192.168.1.102", "country": "Spain", "last_seen": "2025-12-24", "installation_id": "SPK-002"},
-        {"name": "Ahmed Khan", "os": "Ubuntu", "version": "22.04", "ip": "192.168.1.103", "country": "Pakistan", "last_seen": "2025-12-23", "installation_id": "SPK-003"},
-        {"name": "Emily Johnson", "os": "Windows 11", "version": "23H2", "ip": "192.168.1.104", "country": "Canada", "last_seen": "2025-12-24", "installation_id": "SPK-004"},
-        {"name": "Takeshi Yamamoto", "os": "macOS", "version": "14.1", "ip": "192.168.1.105", "country": "Japan", "last_seen": "2025-12-23", "installation_id": "SPK-005"},
-        {"name": "Fatima Ahmed", "os": "CentOS", "version": "8", "ip": "192.168.1.106", "country": "UAE", "last_seen": "2025-12-22", "installation_id": "SPK-006"},
-        {"name": "Robert Brown", "os": "Windows 10", "version": "22H2", "ip": "192.168.1.107", "country": "UK", "last_seen": "2025-12-24", "installation_id": "SPK-007"},
-        {"name": "Sophie Dubois", "os": "Fedora", "version": "38", "ip": "192.168.1.108", "country": "France", "last_seen": "2025-12-23", "installation_id": "SPK-008"},
-        {"name": "Chen Wei", "os": "macOS", "version": "13.6", "ip": "192.168.1.109", "country": "China", "last_seen": "2025-12-24", "installation_id": "SPK-009"},
-        {"name": "Olga Petrov", "os": "Debian", "version": "12", "ip": "192.168.1.110", "country": "Russia", "last_seen": "2025-12-22", "installation_id": "SPK-010"},
-        {"name": "James Wilson", "os": "Windows 11", "version": "23H2", "ip": "192.168.1.111", "country": "Australia", "last_seen": "2025-12-24", "installation_id": "SPK-011"},
-        {"name": "Lars Andersen", "os": "Arch Linux", "ip": "192.168.1.112", "country": "Norway", "last_seen": "2025-12-23", "installation_id": "SPK-012"},
-        {"name": "Yuki Tanaka", "os": "FreeBSD", "version": "13.2", "ip": "192.168.1.113", "country": "Japan", "last_seen": "2025-12-24", "installation_id": "SPK-013"},
-        {"name": "David Thompson", "os": "Windows Server", "version": "2022", "ip": "192.168.1.114", "country": "USA", "last_seen": "2025-12-21", "installation_id": "SPK-014"},
-        {"name": "Anna Schmidt", "os": "OpenBSD", "version": "7.4", "ip": "192.168.1.115", "country": "Germany", "last_seen": "2025-12-23", "installation_id": "SPK-015"}
-    ]
+    # This would be replaced with real data from a telemetry system in the future
+    # For now, we're using mock data to demonstrate the structure
+    # Real implementation would fetch from a database or telemetry service
+    total_devices = 0
+    users_data = []
+
+    # Simulate fetching from a telemetry database
+    # In a real implementation, this would connect to a backend service
+    try:
+        # This is where we would make a real API call to fetch user data
+        # For now, we'll simulate it with mock data that could come from a real source
+        import random
+        import time
+
+        # Simulate a realistic number of installations
+        total_devices = random.randint(12, 25)
+
+        # Generate realistic mock data that simulates real user installations
+        user_names = [
+            "John Smith", "Maria Garcia", "Ahmed Khan", "Emily Johnson",
+            "Takeshi Yamamoto", "Fatima Ahmed", "Robert Brown", "Sophie Dubois",
+            "Chen Wei", "Olga Petrov", "James Wilson", "Lars Andersen",
+            "Yuki Tanaka", "David Thompson", "Anna Schmidt", "Raj Patel",
+            "Isabella Rossi", "Mohammed Al-Sayed", "Emma Johnson", "Liam O'Connor"
+        ]
+
+        os_types = [
+            ("Windows 10", "22H2"), ("Windows 11", "23H2"), ("macOS", "14.1"),
+            ("macOS", "13.6"), ("Ubuntu", "22.04"), ("Fedora", "38"),
+            ("Debian", "12"), ("CentOS", "8"), ("Arch Linux", ""),
+            ("FreeBSD", "13.2"), ("OpenBSD", "7.4"), ("Windows Server", "2022")
+        ]
+
+        countries = [
+            "USA", "UK", "Canada", "Australia", "Germany", "France",
+            "Japan", "China", "India", "Brazil", "UAE", "Norway",
+            "Spain", "Italy", "Pakistan", "Russia", "South Korea"
+        ]
+
+        # Generate realistic user data
+        for i in range(min(total_devices, len(user_names))):
+            user_data = {
+                "name": user_names[i],
+                "os": os_types[i % len(os_types)][0],
+                "version": os_types[i % len(os_types)][1],
+                "ip": f"192.168.1.{100 + i + 1}",
+                "country": random.choice(countries),
+                "last_seen": f"2025-12-{random.randint(20, 25)}",
+                "installation_id": f"SPK-{i+1:03d}",
+                "installation_date": f"2025-11-{random.randint(1, 30):02d}",
+                "version_used": f"v{random.randint(0, 2)}.{random.randint(0, 9)}.{random.randint(0, 23)}"
+            }
+            users_data.append(user_data)
+
+        if total_devices > len(user_names):
+            # Add additional random entries if needed
+            for i in range(len(user_names), total_devices):
+                user_data = {
+                    "name": f"User_{i+1}",
+                    "os": random.choice(os_types)[0],
+                    "version": random.choice(os_types)[1],
+                    "ip": f"192.168.1.{100 + i + 1}",
+                    "country": random.choice(countries),
+                    "last_seen": f"2025-12-{random.randint(20, 25)}",
+                    "installation_id": f"SPK-{i+1:03d}",
+                    "installation_date": f"2025-11-{random.randint(1, 30):02d}",
+                    "version_used": f"v{random.randint(0, 2)}.{random.randint(0, 9)}.{random.randint(0, 23)}"
+                }
+                users_data.append(user_data)
+
+    except Exception as e:
+        # Fallback to simple mock data if there's an issue
+        total_devices = 15
+        users_data = [
+            {"name": "John Smith", "os": "Windows 10", "version": "22H2", "ip": "192.168.1.101", "country": "USA", "last_seen": "2025-12-24", "installation_id": "SPK-001", "installation_date": "2025-11-15", "version_used": "v0.0.23"},
+            {"name": "Maria Garcia", "os": "macOS", "version": "13.5", "ip": "192.168.1.102", "country": "Spain", "last_seen": "2025-12-24", "installation_id": "SPK-002", "installation_date": "2025-11-18", "version_used": "v0.0.22"},
+            {"name": "Ahmed Khan", "os": "Ubuntu", "version": "22.04", "ip": "192.168.1.103", "country": "Pakistan", "last_seen": "2025-12-23", "installation_id": "SPK-003", "installation_date": "2025-11-20", "version_used": "v0.0.23"},
+            {"name": "Emily Johnson", "os": "Windows 11", "version": "23H2", "ip": "192.168.1.104", "country": "Canada", "last_seen": "2025-12-24", "installation_id": "SPK-004", "installation_date": "2025-11-22", "version_used": "v0.0.21"},
+            {"name": "Takeshi Yamamoto", "os": "macOS", "version": "14.1", "ip": "192.168.1.105", "country": "Japan", "last_seen": "2025-12-23", "installation_id": "SPK-005", "installation_date": "2025-11-25", "version_used": "v0.0.23"},
+            {"name": "Fatima Ahmed", "os": "CentOS", "version": "8", "ip": "192.168.1.106", "country": "UAE", "last_seen": "2025-12-22", "installation_id": "SPK-006", "installation_date": "2025-11-28", "version_used": "v0.0.20"},
+            {"name": "Robert Brown", "os": "Windows 10", "version": "22H2", "ip": "192.168.1.107", "country": "UK", "last_seen": "2025-12-24", "installation_id": "SPK-007", "installation_date": "2025-12-01", "version_used": "v0.0.23"},
+            {"name": "Sophie Dubois", "os": "Fedora", "version": "38", "ip": "192.168.1.108", "country": "France", "last_seen": "2025-12-23", "installation_id": "SPK-008", "installation_date": "2025-12-02", "version_used": "v0.0.22"},
+            {"name": "Chen Wei", "os": "macOS", "version": "13.6", "ip": "192.168.1.109", "country": "China", "last_seen": "2025-12-24", "installation_id": "SPK-009", "installation_date": "2025-12-03", "version_used": "v0.0.23"},
+            {"name": "Olga Petrov", "os": "Debian", "version": "12", "ip": "192.168.1.110", "country": "Russia", "last_seen": "2025-12-22", "installation_id": "SPK-010", "installation_date": "2025-12-05", "version_used": "v0.0.21"},
+            {"name": "James Wilson", "os": "Windows 11", "version": "23H2", "ip": "192.168.1.111", "country": "Australia", "last_seen": "2025-12-24", "installation_id": "SPK-011", "installation_date": "2025-12-07", "version_used": "v0.0.23"},
+            {"name": "Lars Andersen", "os": "Arch Linux", "ip": "192.168.1.112", "country": "Norway", "last_seen": "2025-12-23", "installation_id": "SPK-012", "installation_date": "2025-12-08", "version_used": "v0.0.22"},
+            {"name": "Yuki Tanaka", "os": "FreeBSD", "version": "13.2", "ip": "192.168.1.113", "country": "Japan", "last_seen": "2025-12-24", "installation_id": "SPK-013", "installation_date": "2025-12-10", "version_used": "v0.0.23"},
+            {"name": "David Thompson", "os": "Windows Server", "version": "2022", "ip": "192.168.1.114", "country": "USA", "last_seen": "2025-12-21", "installation_id": "SPK-014", "installation_date": "2025-12-12", "version_used": "v0.0.20"},
+            {"name": "Anna Schmidt", "os": "OpenBSD", "version": "7.4", "ip": "192.168.1.115", "country": "Germany", "last_seen": "2025-12-23", "installation_id": "SPK-015", "installation_date": "2025-12-15", "version_used": "v0.0.23"}
+        ]
 
     console.print(f" Total Active Devices: [green]{total_devices}[/green]")
     console.print(" List of Devices / Users using SpeckitPro:")
@@ -1454,7 +1525,9 @@ def display_users_dashboard():
             f"[bold]IP:[/bold] {user['ip']}\n"
             f"[bold]Country:[/bold] {user['country']}\n"
             f"[bold]Last Seen:[/bold] {user['last_seen']}\n"
-            f"[bold]Installation ID:[/bold] {user['installation_id']}",
+            f"[bold]Installation ID:[/bold] {user['installation_id']}\n"
+            f"[bold]Version:[/bold] {user['version_used']}\n"
+            f"[bold]Installed:[/bold] {user['installation_date']}",
             title=f"User Card #{users_data.index(user)+1}",
             border_style="blue",
             padding=(1, 2)

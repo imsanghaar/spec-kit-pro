@@ -201,9 +201,9 @@ For detailed step-by-step instructions, see our [comprehensive guide](./spec-dri
 
 ## 📽️ Video Overview
 
-Want to see Spec Kit in action? Watch our [video overview](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)!
+Want to see SpeckitPro in action? Watch our [video overview](./SpeckitPro__The_Blueprint.mp4)!
 
-[![Spec Kit video header](/media/spec-kit-video-header.jpg)](https://www.youtube.com/watch?v=a9eR1xsfvHg&pp=0gcJCckJAYcqIYzv)
+[SpeckitPro__The_Blueprint.mp4](./SpeckitPro__The_Blueprint.mp4)
 
 ## 🤖 Supported AI Agents
 
