@@ -1,4 +1,4 @@
-> **SpecifyPro**: It enables Spec-driven Vibe-coding by combining the rapid, conversational generation power of "vibe coding" with the structure and architectural coherence provided by the "spec-driven" methodology. This is a enhanced Spec-Driven Development toolkit with patterns & templates for building scalable multi-agent AI systems. It is a practical fork of github/spec-kit for spec-driven development of agentic AI systems. It provides patterns, templates, and reference projects for building scalable, distributed multi-agent apps with the OpenAI Agents SDK, MCP, A2A, and a cloud-native runtime stack—Docker, Kubernetes, Dapr (Actors & Workflows), and Ray. Use it to define specs, spin up services, orchestrate agents, and ship production-ready stacks faster with guardrails and CI-friendly scaffolds.
+> **SpecifyPro**: It enables Spec-driven Vibe-coding by combining the rapid, conversational generation power of "vibe coding" with the structure and architectural coherence provided by the "spec-driven" methodology. This is a enhanced Spec-Driven Development toolkit with patterns & templates for building scalable multi-agent AI systems. It is a practical fork of github/spec-kit for spec-driven development of agentic AI systems. It provides patterns, templates, and reference projects for building scalable, distributed multi-agent apps with the OpenAI Agents SDK, MCP, A2A, and a cloud-native runtime stack—Docker, Kubernetes, Dapr (Actors & Workflows), and Ray. Use it to define specs, spin up services, orchestrate agents, and ship production-ready stacks faster with guardrails and CI-friendly scaffolds. Developed by Imam Sanghaar Chandio
 
 ## The Most Important Question for Today's Developer
 
@@ -762,6 +762,9 @@ git clone https://github.com/panaversity/spec-kit-pro.git
 - **Shell scripts** for automation (Bash/PowerShell)
 - **Documentation** and guides
 - **Bug fixes** and performance improvements
+
+Developed By
+Imam Sanghaar Chandio
 
 ## 💬 Support
 
