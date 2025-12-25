@@ -422,7 +422,7 @@ def select_with_arrows(options: dict, prompt_text: str = "Select an option", def
 
     return selected_key
 
-console = Console()
+console = Console(force_terminal=True)
 
 class BannerGroup(TyperGroup):
     """Custom group that shows banner before help."""
@@ -454,9 +454,26 @@ def show_banner():
         color = colors[i % len(colors)]
         styled_banner.append(line + "\n", style=color)
 
-    console.print(Align.center(styled_banner))
-    console.print(Align.center(Text(TAGLINE, style="italic bright_yellow")))
-    console.print()
+    try:
+        console.print(Align.center(styled_banner))
+    except UnicodeEncodeError:
+        # Fallback for terminals that don't support Unicode - print without styling
+        for line in banner_lines:
+            try:
+                print(line)
+            except UnicodeEncodeError:
+                # Final fallback - replace problematic characters
+                print(line.encode('ascii', errors='replace').decode('ascii'))
+
+    try:
+        console.print(Align.center(Text(TAGLINE, style="italic bright_yellow")))
+    except UnicodeEncodeError:
+        print(TAGLINE)
+
+    try:
+        console.print()
+    except UnicodeEncodeError:
+        print()  # Simple newline
 
 @app.callback(invoke_without_command=True)
 def callback(ctx: typer.Context,
@@ -1375,6 +1392,86 @@ def version():
 
     console.print(panel)
     console.print()
+
+def authenticate_admin():
+    """Authenticate admin user with username and password."""
+    console.print()
+    console.print("------------------------------------------------")
+    console.print(" SpeckitPro Admin Access - Authorized Only")
+    console.print("------------------------------------------------")
+
+    # Get username and password from user
+    try:
+        username = console.input(" Username: ")
+        import getpass
+        password = getpass.getpass(" Password: ")
+
+        # Check credentials
+        if username == "imsanghaar" and password == "imsanghaar":
+            return True
+        else:
+            console.print("\n[red]Unauthorized access. Admin rights required.[/red]")
+            return False
+    except (EOFError, KeyboardInterrupt):
+        console.print("\n[red]Authentication cancelled.[/red]")
+        return False
+
+
+def display_users_dashboard():
+    """Display the users dashboard with mock data in card format."""
+    console.print("------------------------------------------------")
+    console.print(" SpeckitPro Active Users Dashboard")
+    console.print("------------------------------------------------")
+
+    # Mock data for active users/devices with more detailed information
+    total_devices = 15
+    users_data = [
+        {"name": "John Smith", "os": "Windows 10", "version": "22H2", "ip": "192.168.1.101", "country": "USA", "last_seen": "2025-12-24", "installation_id": "SPK-001"},
+        {"name": "Maria Garcia", "os": "macOS", "version": "13.5", "ip": "192.168.1.102", "country": "Spain", "last_seen": "2025-12-24", "installation_id": "SPK-002"},
+        {"name": "Ahmed Khan", "os": "Ubuntu", "version": "22.04", "ip": "192.168.1.103", "country": "Pakistan", "last_seen": "2025-12-23", "installation_id": "SPK-003"},
+        {"name": "Emily Johnson", "os": "Windows 11", "version": "23H2", "ip": "192.168.1.104", "country": "Canada", "last_seen": "2025-12-24", "installation_id": "SPK-004"},
+        {"name": "Takeshi Yamamoto", "os": "macOS", "version": "14.1", "ip": "192.168.1.105", "country": "Japan", "last_seen": "2025-12-23", "installation_id": "SPK-005"},
+        {"name": "Fatima Ahmed", "os": "CentOS", "version": "8", "ip": "192.168.1.106", "country": "UAE", "last_seen": "2025-12-22", "installation_id": "SPK-006"},
+        {"name": "Robert Brown", "os": "Windows 10", "version": "22H2", "ip": "192.168.1.107", "country": "UK", "last_seen": "2025-12-24", "installation_id": "SPK-007"},
+        {"name": "Sophie Dubois", "os": "Fedora", "version": "38", "ip": "192.168.1.108", "country": "France", "last_seen": "2025-12-23", "installation_id": "SPK-008"},
+        {"name": "Chen Wei", "os": "macOS", "version": "13.6", "ip": "192.168.1.109", "country": "China", "last_seen": "2025-12-24", "installation_id": "SPK-009"},
+        {"name": "Olga Petrov", "os": "Debian", "version": "12", "ip": "192.168.1.110", "country": "Russia", "last_seen": "2025-12-22", "installation_id": "SPK-010"},
+        {"name": "James Wilson", "os": "Windows 11", "version": "23H2", "ip": "192.168.1.111", "country": "Australia", "last_seen": "2025-12-24", "installation_id": "SPK-011"},
+        {"name": "Lars Andersen", "os": "Arch Linux", "ip": "192.168.1.112", "country": "Norway", "last_seen": "2025-12-23", "installation_id": "SPK-012"},
+        {"name": "Yuki Tanaka", "os": "FreeBSD", "version": "13.2", "ip": "192.168.1.113", "country": "Japan", "last_seen": "2025-12-24", "installation_id": "SPK-013"},
+        {"name": "David Thompson", "os": "Windows Server", "version": "2022", "ip": "192.168.1.114", "country": "USA", "last_seen": "2025-12-21", "installation_id": "SPK-014"},
+        {"name": "Anna Schmidt", "os": "OpenBSD", "version": "7.4", "ip": "192.168.1.115", "country": "Germany", "last_seen": "2025-12-23", "installation_id": "SPK-015"}
+    ]
+
+    console.print(f" Total Active Devices: [green]{total_devices}[/green]")
+    console.print(" List of Devices / Users using SpeckitPro:")
+
+    for user in users_data:
+        # Create a card-like display for each user
+        user_card = Panel(
+            f"[bold]User:[/bold] {user['name']}\n"
+            f"[bold]OS:[/bold] {user['os']} {user.get('version', '')}\n"
+            f"[bold]IP:[/bold] {user['ip']}\n"
+            f"[bold]Country:[/bold] {user['country']}\n"
+            f"[bold]Last Seen:[/bold] {user['last_seen']}\n"
+            f"[bold]Installation ID:[/bold] {user['installation_id']}",
+            title=f"User Card #{users_data.index(user)+1}",
+            border_style="blue",
+            padding=(1, 2)
+        )
+        console.print(user_card)
+
+    console.print("------------------------------------------------")
+
+
+@app.command()
+def users():
+    """Admin-only command to display active users dashboard."""
+    show_banner()
+
+    if authenticate_admin():
+        display_users_dashboard()
+
 
 def main():
     app()

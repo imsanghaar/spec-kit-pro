@@ -407,6 +407,12 @@ If you encounter issues with an agent, please open an issue so we can refine the
 
 ---
 
+## 👨‍💻 Developer Introduction
+
+This project was created by **Imam Sanghaar Chandio** using advanced Prompt Engineering techniques. The development approach leverages AI-assisted coding methodologies to enhance the Spec-Driven Development process. While the implementation was guided by AI tools and prompt engineering, the core concepts, architecture, and foundational work originate from the GitHub spec-kit project. All credit for the original framework and core ideas goes to the GitHub team and the open-source community that contributed to the spec-kit project.
+
+---
+
 ## 📋 Detailed Process
 
 <details>
