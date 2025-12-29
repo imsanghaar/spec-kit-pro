@@ -14,7 +14,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run markdownlint-cli2
+      - name: Run markdownlint-cli2 with config
         uses: DavidAnson/markdownlint-cli2-action@v19
         with:
+          config: '.markdownlint-cli2.jsonc'
           globs: '**/*.md'
