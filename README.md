@@ -55,6 +55,14 @@ Install once and use everywhere:
 uv tool install specifypro --from git+https://github.com/imsanghaar/spec-kit-pro.git
 ```
 
+#### Option 2: pip Installation
+
+Alternatively, you can install using pip:
+
+```bash
+pip install specifypro
+```
+
 Then use the tool directly:
 
 ```bash
@@ -76,6 +84,12 @@ To upgrade Specify Pro, see the [Upgrade Guide](./docs/upgrade.md) for detailed 
 uv tool install specifypro --force --from git+https://github.com/imsanghaar/spec-kit-pro.git
 ```
 
+Or if installed via pip:
+
+```bash
+pip install --upgrade specifypro
+```
+
 #### Option 2: One-time Usage
 
 Run directly without installing:
@@ -84,11 +98,17 @@ Run directly without installing:
 uvx --from git+https://github.com/imsanghaar/spec-kit-pro.git specify init <PROJECT_NAME>
 ```
 
+Or using pipx:
+
+```bash
+pipx run specifypro specify init <PROJECT_NAME>
+```
+
 **Benefits of persistent installation:**
 
 - Tool stays installed and available in PATH
 - No need to create shell aliases
-- Better tool management with `uv tool list`, `uv tool upgrade`, `uv tool uninstall`
+- Better tool management with `uv tool list`, `uv tool upgrade`, `uv tool uninstall` (for uv installations) or `pip list`, `pip install --upgrade`, `pip uninstall` (for pip installations)
 - Cleaner shell configuration
 
 ### 2. Establish project principles
@@ -141,26 +161,26 @@ Want to see SpeckitPro in action? Watch our [video overview](https://youtu.be/H8
 
 ## 🤖 Supported AI Agents
 
-| Agent                                                                                | Support | Notes                                                                                                                                     |
-| ------------------------------------------------------------------------------------ | ------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| [Qoder CLI](https://qoder.com/cli)                                                   | ✅      |                                                                                                                                           |
-| [Amazon Q Developer CLI](https://aws.amazon.com/developer/learning/q-developer-cli/) | ⚠️      | Amazon Q Developer CLI [does not support](https://github.com/aws/amazon-q-developer-cli/issues/3064) custom arguments for slash commands. |
-| [Amp](https://ampcode.com/)                                                          | ✅      |                                                                                                                                           |
-| [Auggie CLI](https://docs.augmentcode.com/cli/overview)                              | ✅      |                                                                                                                                           |
-| [Claude Code](https://www.anthropic.com/claude-code)                                 | ✅      |                                                                                                                                           |
-| [CodeBuddy CLI](https://www.codebuddy.ai/cli)                                        | ✅      |                                                                                                                                           |
-| [Codex CLI](https://github.com/openai/codex)                                         | ✅      |                                                                                                                                           |
-| [Cursor](https://cursor.sh/)                                                         | ✅      |                                                                                                                                           |
-| [Gemini CLI](https://github.com/google-gemini/gemini-cli)                            | ✅      |                                                                                                                                           |
-| [GitHub Copilot](https://code.visualstudio.com/)                                     | ✅      |                                                                                                                                           |
-| [IBM Bob](https://www.ibm.com/products/bob)                                          | ✅      | IDE-based agent with slash command support                                                                                                |
-| [Jules](https://jules.google.com/)                                                   | ✅      |                                                                                                                                           |
-| [Kilo Code](https://github.com/Kilo-Org/kilocode)                                    | ✅      |                                                                                                                                           |
-| [opencode](https://opencode.ai/)                                                     | ✅      |                                                                                                                                           |
-| [Qwen Code](https://github.com/QwenLM/qwen-code)                                     | ✅      |                                                                                                                                           |
-| [Roo Code](https://roocode.com/)                                                     | ✅      |                                                                                                                                           |
-| [SHAI (OVHcloud)](https://github.com/ovh/shai)                                       | ✅      |                                                                                                                                           |
-| [Windsurf](https://windsurf.com/)                                                    | ✅      |                                                                                                                                           |
+| Agent                                                                                | Support | Notes                                                                                   |
+| ------------------------------------------------------------------------------------ | ------- | --------------------------------------------------------------------------------------- |
+| [Qoder CLI](https://qoder.com/cli)                                                   | ✅      |                                                                                       |
+| [Amazon Q Developer CLI](https://aws.amazon.com/developer/learning/q-developer-cli/) | ⚠️      | Amazon Q Developer CLI does not support custom arguments for slash commands.            |
+| [Amp](https://ampcode.com/)                                                          | ✅      |                                                                                       |
+| [Auggie CLI](https://docs.augmentcode.com/cli/overview)                              | ✅      |                                                                                       |
+| [Claude Code](https://www.anthropic.com/claude-code)                                 | ✅      |                                                                                       |
+| [CodeBuddy CLI](https://www.codebuddy.ai/cli)                                        | ✅      |                                                                                       |
+| [Codex CLI](https://github.com/openai/codex)                                         | ✅      |                                                                                       |
+| [Cursor](https://cursor.sh/)                                                         | ✅      |                                                                                       |
+| [Gemini CLI](https://github.com/google-gemini/gemini-cli)                            | ✅      |                                                                                       |
+| [GitHub Copilot](https://code.visualstudio.com/)                                     | ✅      |                                                                                       |
+| [IBM Bob](https://www.ibm.com/products/bob)                                          | ✅      | IDE-based agent with slash command support                                              |
+| [Jules](https://jules.google.com/)                                                   | ✅      |                                                                                       |
+| [Kilo Code](https://github.com/Kilo-Org/kilocode)                                    | ✅      |                                                                                       |
+| [opencode](https://opencode.ai/)                                                     | ✅      |                                                                                       |
+| [Qwen Code](https://github.com/QwenLM/qwen-code)                                     | ✅      |                                                                                       |
+| [Roo Code](https://roocode.com/)                                                     | ✅      |                                                                                       |
+| [SHAI (OVHcloud)](https://github.com/ovh/shai)                                       | ✅      |                                                                                       |
+| [Windsurf](https://windsurf.com/)                                                    | ✅      |                                                                                       |
 
 ## 🔧 Specify Pro CLI Reference
 
@@ -168,9 +188,9 @@ The `specify` command supports the following options:
 
 ### Commands
 
-| Command | Description                                                                                                                                             |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `init`  | Initialize a new Specify Pro project from the latest template                                                                                               |
+| Command | Description                                                                                   |
+| ------- | --------------------------------------------------------------------------------------------- |
+| `init`  | Initialize a new Specify Pro project from the latest template                               |
 | `check` | Check for installed tools (`git`, `claude`, `gemini`, `code`/`code-insiders`, `cursor-agent`, `windsurf`, `qwen`, `opencode`, `codex`, `shai`, `qoder`) |
 
 ### `specify init` Arguments & Options
@@ -282,7 +302,7 @@ Extra utility commands for common development tasks:
 
 | Variable          | Description                                                                                                                                                                                                                                                                                            |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `SPECIFY_FEATURE` | Override feature detection for non-Git repositories. Set to the feature directory name (e.g., `001-photo-albums`) to work on a specific feature when not using Git branches.<br/>\*\*Must be set in the context of the agent you're working with prior to using `/spp.plan` or follow-up commands. |
+| `SPECIFY_FEATURE` | Override feature detection for non-Git repositories. Set to the feature directory name (e.g., `001-photo-albums`) to work on a specific feature when not using Git branches.<br/>**Must be set in the context of the agent you're working with prior to using `/spp.plan` or follow-up commands.** |
 
 ## 📚 Core Philosophy
 
