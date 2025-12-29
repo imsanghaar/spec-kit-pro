@@ -1,3 +1,4 @@
+
 <div align="center">
     <img src="./media/logo_large.webp" alt="Spec Kit Logo" width="200" height="200"/>
     <h1>🌱 Spec Kit</h1>
@@ -669,3 +670,7 @@ This project is heavily influenced by and based on the work and research of [Joh
 ## 📄 License
 
 This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) file for the full terms.
+
+# spec-kit-pro
+ 💫 Toolkit to help you get started with Spec-Driven Development with advanced templates. 
+
