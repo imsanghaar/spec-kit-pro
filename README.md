@@ -670,7 +670,3 @@ This project is heavily influenced by and based on the work and research of [Joh
 ## 📄 License
 
 This project is licensed under the terms of the MIT open source license. Please refer to the [LICENSE](./LICENSE) file for the full terms.
-
-# spec-kit-pro
- 💫 Toolkit to help you get started with Spec-Driven Development with advanced templates. 
-
