@@ -657,7 +657,7 @@ rm gcm-linux_amd64.2.6.1.deb
 
 **SpeckitPro Developer:**
 
-- Imam Sanghaar Chandio ([@imamsanghaar](https://github.com/imamsanghaar))
+- Imam Sanghaar Chandio ([@imsanghaar](https://github.com/imsanghaar))
 
 ## 💬 Support
 
