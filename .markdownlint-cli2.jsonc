@@ -20,6 +20,12 @@
     "style": "asterisk"
   },
   "MD060": false,
+  "MD040": false,
+  "MD047": false,
+  "MD029": false,
+  "MD012": false,
+  "MD026": false,
+  "MD034": false,
   "ignores": [
     ".genreleases/"
   ]
