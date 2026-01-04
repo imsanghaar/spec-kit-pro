@@ -20,6 +20,8 @@ dependencies = [
 specifypro = "specifypro:main"
 sp = "specifypro:main"
 specifyplus = "specifypro:main"
+spp = "specifypro:main"
+speckitpro = "specifypro:main"
 
 [build-system]
 requires = ["hatchling"]
