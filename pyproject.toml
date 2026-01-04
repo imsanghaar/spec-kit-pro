@@ -1,6 +1,6 @@
 [project]
 name = "specifypro"
-version = "0.0.23"
+version = "0.0.24"
 description = "SpecifyPro CLI - Imam Sanghaar's Spec-Driven Development Toolkit. A fork of GitHub Spec Kit."
 readme = "README.md"
 authors = [
