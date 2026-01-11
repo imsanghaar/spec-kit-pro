@@ -423,7 +423,54 @@ def select_with_arrows(options: dict, prompt_text: str = "Select an option", def
 
     return selected_key
 
-console = Console()
+import sys
+import os
+
+# Configure console for cross-platform compatibility
+# Handle Windows encoding issues by setting appropriate options
+def create_console():
+    try:
+        # Create console with Windows-compatible settings
+        kwargs = {
+            'force_terminal': (os.getenv("CI") is not None),
+            'force_interactive': (os.getenv("CI") is None) and (os.getenv("GITHUB_ACTIONS") is None),
+            'no_color': (os.getenv("NO_COLOR") is not None),
+            # Enable legacy Windows compatibility to handle encoding issues
+            'legacy_windows': (sys.platform.startswith('win')),
+        }
+
+        # Handle encoding specifically for Windows to avoid Unicode issues
+        if sys.platform.startswith('win'):
+            # On Windows, avoid setting encoding explicitly to prevent charmap errors
+            # Instead, let rich handle it automatically
+            # Also disable problematic features that cause Unicode issues
+            kwargs['soft_wrap'] = True  # Use soft wrapping to avoid encoding issues
+        else:
+            kwargs['encoding'] = 'utf-8'
+
+        return Console(**kwargs)
+    except Exception:
+        # Fallback to basic console if there are any issues
+        try:
+            # Try creating a console with minimal features to avoid encoding issues
+            return Console(legacy_windows=True, soft_wrap=True)
+        except Exception:
+            # Ultimate fallback - create a basic console-like object
+            class FallbackConsole:
+                def print(self, *args, **kwargs):
+                    # Basic print without rich formatting to avoid encoding issues
+                    print(*args)
+
+                def rule(self, *args, **kwargs):
+                    print("=" * 50)
+
+                def __getattr__(self, name):
+                    # Return a dummy function for any other console methods
+                    return lambda *args, **kwargs: None
+
+            return FallbackConsole()
+
+console = create_console()
 
 class BannerGroup(TyperGroup):
     """Custom group that shows banner before help."""
@@ -452,11 +499,28 @@ def show_banner():
         color = colors[i % len(colors)]
         styled_banner.append(line + "\n", style=color)
 
-    console.print(Align.center(styled_banner))
-    console.print(Align.center(Text(TAGLINE, style="italic bright_yellow")))
-    console.print(Align.center(Text("Created by Imam Sanghaar Chandio (@imsanghaar)", style="dim")))
-    console.print(Align.center(Text("Based on GitHub Spec-Kit by Den Delimarsky & John Lam", style="dim")))
-    console.print()
+    try:
+        # Try to print the banner with colors and formatting
+        console.print(Align.center(styled_banner))
+        console.print(Align.center(Text(TAGLINE, style="italic bright_yellow")))
+        console.print(Align.center(Text("Created by Imam Sanghaar Chandio (@imsanghaar)", style="dim")))
+        console.print(Align.center(Text("Based on GitHub Spec-Kit by Den Delimarsky & John Lam", style="dim")))
+        console.print()
+    except (UnicodeEncodeError, UnicodeDecodeError, OSError, AttributeError):
+        # Fallback: print a simplified version without rich formatting if encoding fails
+        import sys
+        # Use a simple ASCII banner instead of the Unicode one
+        simple_ascii_banner = """
+######## ######## ####### ####### ## ####### ##   ## ####### ######  #######
+#      # #      # #      #      ## #      # # # # # #      # #      # #     #
+#######  ######## ######  #      ## ######  #  ###  ######## ######  #     #
+#      # #      # #      #      ## #      # #   #   #      # #      # #     #
+#######  #      # ####### ####### ## #      # #       #      # #      # #######
+        """
+        print(simple_ascii_banner)
+        print(TAGLINE)
+        print("Created by Imam Sanghaar Chandio (@imsanghaar)")
+        print("Based on GitHub Spec-Kit by Den Delimarsky & John Lam\n")
 
 def get_version() -> str:
     """Get the current version of specifyplus."""
@@ -1058,7 +1122,17 @@ def init(
     if not here:
         setup_lines.append(f"{'Target Path':<15} [dim]{project_path}[/dim]")
 
-    console.print(Panel("\n".join(setup_lines), border_style="cyan", padding=(1, 2)))
+    try:
+        console.print(Panel("\n".join(setup_lines), border_style="cyan", padding=(1, 2)))
+    except (UnicodeEncodeError, UnicodeDecodeError, OSError, AttributeError):
+        # Fallback: print simple text version if rich formatting fails
+        print("\nSpecify Project Setup")
+        print("")
+        print(f"Project:        {project_path.name}")
+        print(f"Working Path:   {current_dir}")
+        if not here:
+            print(f"Target Path:    {project_path}")
+        print("")
 
     should_init_git = False
     if not no_git:

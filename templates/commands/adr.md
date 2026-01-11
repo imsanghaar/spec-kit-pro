@@ -53,7 +53,7 @@ Run `{SCRIPT}` from repo root and parse JSON for FEATURE_DIR and AVAILABLE_DOCS.
 
 Derive absolute paths:
 
-- PLAN = FEATURE_DIR/plan.md (REQUIRED - abort if missing with "Run /spp.plan first")
+- PLAN = FEATURE_DIR/plan.md (REQUIRED - abort if missing with "Run /sp.plan first")
 - RESEARCH = FEATURE_DIR/research.md (if exists)
 - DATA_MODEL = FEATURE_DIR/data-model.md (if exists)
 - CONTRACTS_DIR = FEATURE_DIR/contracts/ (if exists)
@@ -156,7 +156,7 @@ Present results in this exact structure:
    - ADR-{id}: {conflict description}
 
 Next Steps:
-→ Resolve conflicts before proceeding to /spp.tasks
+→ Resolve conflicts before proceeding to /sp.tasks
 → Review created ADRs with team
 → Update plan.md if needed
 
@@ -170,7 +170,7 @@ Acceptance Criteria (PASS only if all true)
 
 If plan.md missing:
 
-- Display: "❌ Error: plan.md not found. Run /spp.plan first to generate planning artifacts."
+- Display: "❌ Error: plan.md not found. Run /sp.plan first to generate planning artifacts."
 - Exit gracefully without creating any ADRs
 
 If create-adr.sh fails:

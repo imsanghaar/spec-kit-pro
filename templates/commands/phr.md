@@ -115,7 +115,7 @@ Read the file at `path` from JSON output. Replace ALL {{PLACEHOLDERS}}:
 - `{{FEATURE}}` → Feature from JSON or "none"
 - `{{BRANCH}}` → Current branch name
 - `{{USER}}` → Git user name or "unknown"
-- `{{COMMAND}}` → "/spp.phr" or the command that triggered this
+- `{{COMMAND}}` → "/sp.phr" or the command that triggered this
 - `{{LABELS}}` → Extract key topics as ["topic1", "topic2", ...]
 - `{{LINKS_SPEC}}`, `{{LINKS_TICKET}}`, `{{LINKS_ADR}}`, `{{LINKS_PR}}` → Relevant links or "null"
 - `{{FILES_YAML}}` → List files modified/created, one per line with " - " prefix, or " - none"
